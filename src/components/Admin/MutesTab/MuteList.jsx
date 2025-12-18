@@ -1,6 +1,6 @@
 "use client"
 
-import { Pencil, Trash2, Volume2, MessageSquare } from 'lucide-react'
+import { Pencil, Trash2, Volume2, MessageSquare, MessageSquareOff, Mic, VolumeX } from 'lucide-react'
 import { useI18n } from "@/contexts/I18nContext"
 import { Button } from "@/components/UI/button"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/UI/avatar"
@@ -26,25 +26,25 @@ const getMuteTypeConfig = (type, t) => {
     case 'GAG':
       return {
         label: t('mutes.gag'),
-        icon: '💬',
+        icon: MessageSquareOff,
         className: 'bg-orange-600 text-white'
       }
     case 'MUTE':
       return {
         label: t('mutes.mute'),
-        icon: '🎤',
+        icon: Mic,
         className: 'bg-purple-600 text-white'
       }
     case 'SILENCE':
       return {
         label: t('mutes.silence'),
-        icon: '🔇',
+        icon: Volume2,
         className: 'bg-pink-600 text-white'
       }
     default:
       return {
         label: t('common.unknown'),
-        icon: '❓',
+        icon: VolumeX,
         className: 'bg-zinc-700 text-white'
       }
   }
@@ -61,10 +61,11 @@ const StatusBadge = ({ status, t }) => {
 
 const MuteTypeBadge = ({ type, t }) => {
   const config = getMuteTypeConfig(type, t)
+  const Icon = config.icon
   
   return (
     <span className={`px-2.5 py-1 rounded-full text-xs font-medium flex items-center gap-1.5 ${config.className}`}>
-      <span>{config.icon}</span>
+      <Icon className="size-3" />
       {config.label}
     </span>
   )
