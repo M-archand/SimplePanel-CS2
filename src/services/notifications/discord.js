@@ -164,7 +164,7 @@ export async function sendDiscordWebhook(action, type, data, adminData, oldData 
     }
 
     embed.footer = {
-      text: `CrisisiGamer`
+      text: process.env.PANEL_NAME || "SimplePanel"
     }
 
     const payload = {
